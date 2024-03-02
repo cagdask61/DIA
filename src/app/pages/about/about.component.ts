@@ -6,14 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './about.component.html',
   imports: [
 
-  ],
-  styles: `
-  :host {
-    display: block;
-    height: 100%;
-  }
-  `
+  ]
 })
 export default class AboutComponent {
-
 }

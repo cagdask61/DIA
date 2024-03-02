@@ -15,9 +15,12 @@
     </svg>
     }
 </button>
-<router-outlet />
 
-<div class="container mx-auto w-full h-max min-h-screen flex flex-col justify-center">
-    <app-home></app-home>
-    <!-- <app-about></app-about> -->
+<!-- <div class="container mx-auto w-full h-max min-h-screen flex flex-col justify-center">
+    <router-outlet />
+</div> -->
+
+<div class="flex flex-col gap-y-10 h-full w-full">
+    <app-home class="w-full h-max min-h-screen grid place-items-center" />
+    <app-about class="w-full h-max min-h-screen grid place-items-center" />
 </div>

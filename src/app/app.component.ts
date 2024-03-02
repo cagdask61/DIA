@@ -14,6 +14,12 @@ import AboutComponent from './pages/about/about.component';
     HomeComponent,
     AboutComponent
   ],
+  styles: `
+  :host{
+    display: block;
+    height: 100%;
+  }
+  `
 })
 export default class AppComponent {
 

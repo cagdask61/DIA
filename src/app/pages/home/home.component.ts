@@ -1,8 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, NgZone, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { Component, NgZone, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { gsap } from 'gsap';
-import { TextPlugin } from "gsap/TextPlugin";
 import TypeIt from 'typeit';
 
 @Component({
@@ -10,30 +9,18 @@ import TypeIt from 'typeit';
   standalone: true,
   templateUrl: './home.component.html',
   imports: [
-
-  ],
-  styles: `
-  :host {
-    display: block;
-    height: 100%;
-  }
-  `
+    RouterLinkWithHref
+  ]
 })
 export default class HomeComponent implements OnInit {
 
   private readonly platformID = inject(PLATFORM_ID);
   private readonly ngZone = inject(NgZone);
 
-  @ViewChild('job', { static: true }) private readonly jobEl!: ElementRef<HTMLDivElement>;
-
-  constructor() {
-    gsap.registerPlugin(TextPlugin);
-  }
-
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformID)) {
       this.ngZone.runOutsideAngular(() => {
-        new TypeIt('#job', { loop: true }).type(`"Tasarımcı"`).pause(3000).delete().pause(2000).type(`"Front End Developer"`).pause(3000).go();
+        new TypeIt('#job', { loop: true }).type(`"Tasarımcı"`).pause(3000).delete().pause(2000).type(`"Web Geliştirici"`).pause(3000).go();
       });
     }
   }
