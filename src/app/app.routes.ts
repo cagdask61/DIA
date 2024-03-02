@@ -1,3 +1,6 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+const APP_ROUTES: Routes = [
+    { path: '', loadComponent: () => import('./pages/home/home.component') }
+];
+export default APP_ROUTES;
