@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
 
 import { gsap } from 'gsap';
 import { TextPlugin } from "gsap/TextPlugin";
@@ -22,6 +22,7 @@ import TypeIt from 'typeit';
 export default class HomeComponent implements OnInit {
 
   private readonly platformID = inject(PLATFORM_ID);
+  private readonly ngZone = inject(NgZone);
 
   @ViewChild('job', { static: true }) private readonly jobEl!: ElementRef<HTMLDivElement>;
 
@@ -31,7 +32,9 @@ export default class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformID)) {
-      new TypeIt('#job', { loop: true }).pause(1000).type('Tasarımcı').pause(3000).delete().pause(2000).type('Front End Developer').go();
+      this.ngZone.runOutsideAngular(() => {
+        new TypeIt('#job', { loop: true }).type(`"Tasarımcı"`).pause(3000).delete().pause(2000).type(`"Front End Developer"`).pause(3000).go();
+      });
     }
   }
 

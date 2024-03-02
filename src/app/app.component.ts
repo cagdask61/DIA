@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import NavigationComponent from './components/navigation/navigation.component';
-import FooterComponent from './components/footer/footer.component';
 import ThemeService from './services/theme.service';
+import HomeComponent from './pages/home/home.component';
+import AboutComponent from './pages/about/about.component';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +11,17 @@ import ThemeService from './services/theme.service';
   templateUrl: './app.component.html',
   imports: [
     RouterOutlet,
-    NavigationComponent,
-    FooterComponent
+    HomeComponent,
+    AboutComponent
   ],
 })
 export default class AppComponent {
 
-  readonly themeService = inject(ThemeService);
+  private readonly themeService = inject(ThemeService);
+
+  readonly currentTheme = this.themeService.theme.asReadonly();
 
   toggleTheme() {
-
+    this.themeService.toggle();
   }
 }
